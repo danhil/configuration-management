@@ -123,21 +123,24 @@ The main question that occurs in different forms is: what program is this? This 
     CM provides stability to the production of a SW system by controlling the product evolution through; Configuration identification, Configuration control, Configuration status accounting and Configuration audit.
     \begin{itemize}
     \item [ Check-out/check-in model]
-    In the check-out/check-in model, files are stored individually in a repository from which they are checked out whenever the files are accessed, and checked in when they have changed.
-    This repository can store multiple versions of the files. Because these files can be documentation or source code, but can also be a collection of files, the term Configuration item (CI) will be used from now on.
+    In the check-out/check-in model, the version support of indevidual files is the focus. Files are stored individually in a repository from which they are checked out whenever the files are accessed, and checked in when they have changed.
+    This repository can store multiple versions of the files but has no notion of logical changes. Supports sequential version history and version branching(independant development path, different versions etc).
     The basic mechanism used to prevent conflicts by simultaneous modifications is that of locking.
     \item[Composition model]
-    The composition model is an extension on the check-out/check-in model. This model allows developers to think in configurations instead of individual files.
+    The composition model is an extension on the check-out/check-in model. This model allows developers to think in configurations instead of individual files and supports the handleing of a configuration history.
     Although the complete check-out/check-in model is represented in the composition model, it enables the use of different strategies for updating through the use of
     improved support for the management of configurations. A configuration is defined as being built up from a system model and version selection rules.
-    The system model determines which files are used, while the version selection rules determine which version of the files (e.g. the latest versions or of a certain development state).
+    The system model determines which files are used, while the version selection rules determine which version of the files (e.g. the latest versions or of a certain development state).Variants are represented by branches
+    and identified by branch lables. Limitation:  Variant and logical change information is contained in the naming conventions.
     \item[Long transaction model]
-    The long transactions model takes a broader approach by assuming that a system is built up out of logical changes.
+    The long transactions model takes a broader approach by assuming that a system is built up out of logical atomic changes.A change is performed as a transaction, not visible until commit a commit creates a new version
+    of the modified data elements. Consists of a workspace and concurrency control scheme, workspaces are supported by the CM tool and local history etc. Optimistic concurrency scheme allows local workspaces to 
+    modify same component, conflicts are recognized on checkin.
     Its focus is on the coordination and integration of these changes. Basically, it uses versions of configurations and versions of files.
     A configuration is created based on a change request which is stored separately. Files in this configuration can be synchronized using the check-out/check-in model.
     When the change is completed, the complete configuration is stored back into the repository and integrated with other changes.
     \item[Change set model]
-    The change set model also works based on change requests and has a lot in common with the long transactions model.
+    The change set model also works based on change requests and has a lot in common with the long transactions model. Represents the set of modifications to different components that make up a logical change.
     However, it starts with a certain configuration as the basis for changes. This is then changed according to the independent change requests that come in.
     New configurations of the product are then created by applying sets of the independently stored changes on the baseline version.
     \end{itemize}
