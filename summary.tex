@@ -140,8 +140,9 @@ The main question that occurs in different forms is: what program is this? This 
     A configuration is created based on a change request which is stored separately. Files in this configuration can be synchronized using the check-out/check-in model.
     When the change is completed, the complete configuration is stored back into the repository and integrated with other changes.
     \item[Change set model]
-    The change set model also works based on change requests and has a lot in common with the long transactions model. Represents the set of modifications to different components that make up a logical change.
-    However, it starts with a certain configuration as the basis for changes. This is then changed according to the independent change requests that come in.
+    The change set model also works based on change requests and has a lot in common with the long transactions model. Represents the set of modifications to different components that make up
+    a logical change and thus provides natural link to change requests. However, it starts with a certain configuration as the basis for changes.
+    This is then changed according to the independent change requests that come in.
     New configurations of the product are then created by applying sets of the independently stored changes on the baseline version.
     \end{itemize}
     \begin{itemize}
