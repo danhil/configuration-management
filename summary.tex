@@ -1,0 +1,161 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{EDAN10 - Summary and key concepts}
+\author{Daniel Hilton}
+\date{December 2013}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Week 1}
+The number of communication channels increases faster than the number of people involved in a project -->  more time spent coordinating work between people.
+The main question that occurs in different forms is: what program is this? This and resulting questions is due to coordnation failiure. Configureation manegement is the art of identifying, organizing and controlling modifications to software. Maximize productivity by minimizing mistakes.There are three types of main problems in CM: \\
+
+    \begin{description}
+    \item[Double maintenece]
+    is the problem of keeping multiple identical copies of software. Bugfixes must be identical in each copy. Multiple copies inadvertantly diverge over time.
+    \item[Shared data]
+    arises when multiple people are simultaniously accessing and modifying the same data --> interference due to simultanious changes on the same code.
+    \item[Simultanious update] is the problem that arises when the same software is simultaniously updated, can lead to loss of changes. \ldots
+    \end{description}
+
+    \subsection{Program families}
+    The purpose of professional software development is to build a program family --> alternative forms of the same program. The CM  strategy must successfully control all of the members of a program family to keep programs identical in the way they are supposed to be and different in the way that they are supposed to be different. Need to record and understand the different program versions and be able to produce the correct version to fill a perticular demand. To solve the double maintenece problem a program \textit{libary} is built up that contains modules. The list of modules representing a program is called the \textit{configuration}the process of selecting the modules is called \textit{configuring} the program.
+    The library should reflect the relationships between the modules and create an understanding of the ways in which the versions differ and in which ways they are the same. Two different kinds of versions: \textit{revisions} and \textit{variations}.
+
+    \subsubsection{revisions}
+    A revision is a new version of a module intended to superceed the previous verision. Old versions of a program are needed to eg reproduce bugs.
+
+    \subsubsection{variations}
+    Module variations fulfill the same function for slightly different situations, alternative interchangable parts. Variations coexist as equal alternatives. Stubs used to mask out modules for eg testing purposes.
+    Storing versions of modules can be done as seperate files, can be identified by naming conventions --> double maintenece. Deltas means to store one full version of a file and represent differences as deltas, contains the full description of differences between two files. Drawback is that if the main file is lost or corrupted all versions are lost, hard to represent where the differences are in a file.
+    Conditional compliation of a source file can be used to mask out the differences, this however can lead to increased compexity of reading and modifying code. Better for storing versions but not revisions.
+
+    \subsection{Derivations}
+    The history/composition of a program is its derivation. Knowing history and derivation helps debugging. Derivations must be precise and show exactly which modules and what revisions of these modules were linked to form a build. A derivation of a program requires identification of:
+
+    \begin{itemize}
+    \item Linker compiler used to build program
+    \item data input
+    \item options and arguments in build
+    \item reason of why the options and arguments were used
+    \item persom responsible for build
+    \item date and time of build
+    \end{itemize}
+    Should be kept for source code, object code and executable images etc.
+    Unique identification of objects under CM is important.
+
+    \subsection{Reproducibility}
+    Reproducibility is needed to be able to reproduce exactly the program that is intended.
+    Anything that appears in a derivation must be \textit{frozen} implies both immutibility and protection against deletion.
+
+    \subsection{Baselines and private workspaces}
+    Importent to have stability to develop software successfully. Solution to team coordination problem is to use a project \textit{baseline} in conjunction with indevidual workspaces for developers.The \textit{baseline} is the shared project database that contains all of the components from which the product is derived, it contains the library of modules and is tightly controlled in respect to code modifications. Each programmer has a private workspace which contains informaion from the baseline. Simultanious update problem can be replaced by serial update if checkout-lock-checkin process is used, however normally optimistic concurrency process is used where checkout/checkin does not lock, instad long transactions lead to merges.
+
+    \section{Week 2}
+    Workshops are a good way of introducing SCM  to a company because:
+
+    \begin{itemize}
+    \item Evolution of company wide processes and plans.
+    \end{itemize}
+    Three main concepts:
+
+    \begin{itemize}
+    \item[Construction site -- collaborative work -- putting it together] there is a need to collaborate, coordinate and communicate. Need of parallell work, although for coordination some work may be done in serial. Parallell work --> copy for all --> double maintenece, temporary copy for all that is submitted --> simultanious maintenece. Change --> need tracability between change request and implementation--> CCB to evaluate. Communication, need good communication bandwidth --> good documentation, comments codeing standards. Communicate through artefacts.
+    \item[ The study -- private workspace -- getting work done] need good rules of conduct and rules.
+    Have artefacts in a central repository, need for immutable isolated objects to work on --> no work on central repository. Tools can be chosen indevidually if no need for reproducability. A configuration is called partially bound if it can if the exact versions can vary over time. Bound configuration is needed for reproducibility --> can form a baseline --> basis for further development formal change manegment is needed.
+    \item[ The library -- store, recrate and register -- collecting, sharing, using knowledge]
+    Every stable issue of an artefact is a version in versioning tool. Tool should impose structure on how versions develop from each other and keep track of all information about different versions. Version graphs, branching, merging.\ldots
+    \item[Conclusions] Keep good contact with manegment and have their support.
+    \item The study -- the personal workspace
+    \item The library -- the use and organisation of collective knowledge
+    \end{itemize}
+
+    \subsection{ Different cases of distrobuted development}
+    \begin{itemize}
+    \item [Locally] group awareness, right tools, common file system.
+    \item [Distance working] Bringing home files, little awareness of others doings, cm tools can help. Remote login.
+    \item [Co-located groups] Groups working on eg differnt modules. Files stored in different file systems but same CM system. Important to maintain knowledge of development status between groups. Change management of common componenets is of imporance.
+    \item [Distrobuted groups] Not only are projects distrobuted, members are also distrobuted. Communication, meetings not even between members. Important to support division of files and concurrent development.
+    \item [Architectures for distrobuted development]
+    \begin{itemize}
+    \item [Remote login] needs a good connection to the server everyone works at same site - good.
+    \item [Local files that are pushed to server] CM tool based.
+    \item [ Several sites by master-slave connection] The files copied to slave can not be modified anywhere else.
+    \item [ Several sites with areas of responsibility] Only the files connected to the responsibility can be modified. More permanent division of permissions lead to automated synchronization.
+    \item [ Several sites with equal servers ] Several mirrored/sycnhronized servers. Hard to sycnhronize and resolve merge conflicts.
+
+
+    \subsection{Distrobuted development challenges producer/consumer or shared source code.}
+    \begin{itemize}
+    \item[Organization] Who is responsible for the overall project/manegerial issues/system architecture? Who are the team members for the project? -- Super project organizational structure.
+    \item[Communication] Establish system architecture upfront, developers working towards the same goal, what tools are used, software development enviroment. Minimize dependencies between software component groups and maximize communication bandwidth.
+    \item[Producer consumer scenario]
+    \begin{itemize}
+    \item Define the system architecture and assign components to each colocated team
+    \item Assign a common architect whom is responsible for designing the common architecture and making the final descisions.
+    \item Assign a project manager whom has the responsibility for defining the integration plan and tracking the progress of each project iteration.
+    \item There are differnt branching strategies as: branch per user, per site, per activity etc.
+    \end{itemize}
+    \end{itemize}
+
+    \section{ Week 3 - the study metaphore}
+    \subsection{Defining and building configurations} 
+    Configuration --> collection of elements that fulfill a specific purpose. Inputs to the process of building a configuration is : source elements, system model, version selection, derived elements -> incremental building.
+    To build a make file: parametrise, automate and manage errors. Use directories to hold configuration, eg dev stable main etc. Build a directory tree structure for modules where each one has dev, main etc.
+    Makes limitations are : lacks version selection support, does not register tools and options used for building.
+
+    \subsection{Builds}
+    \begin{itemize}
+    \item[Development enviroment] Best goal for development enviroments is reproduceibility. Can vary when flexibility is needed bu can be invariant when reproduceibility is needed.
+    \item [ Distrobuted and not distrobuted enviroments] Fully distrobuted development or build enviroments ensures consistancy in builds and development platform. Nondistrobuted faster but harder to maintain.
+    Conforming reproduceibility is harder on distrobuted systems as dependencies are spawned throughout the network. In order to confirm the reliability of a distrobuted development system we must create a non distrobuted version of the system.
+    \item[Tools] Choosing build or other tools is done with consideration to Licensing, Maintenence, Life expectency and features. 
+    \item [Build reproduceibility] in assesing reproduceibility the three factors of : build, runtime, development and execution enviroments should be taken into account.
+    \end{itemize}
+
+    \subsection{Peter Feiler - CM models}
+    CM provides stability to the production of a SW system by controlling the product evolution through; Configuration identification, Configuration control, Configuration status accounting and Configuration audit.
+    \begin{itemize}
+    \item [ Check-out/check-in model]
+    In the check-out/check-in model, files are stored individually in a repository from which they are checked out whenever the files are accessed, and checked in when they have changed.
+    This repository can store multiple versions of the files. Because these files can be documentation or source code, but can also be a collection of files, the term Configuration item (CI) will be used from now on.
+    The basic mechanism used to prevent conflicts by simultaneous modifications is that of locking.
+    \item[Composition model]
+    The composition model is an extension on the check-out/check-in model. This model allows developers to think in configurations instead of individual files.
+    Although the complete check-out/check-in model is represented in the composition model, it enables the use of different strategies for updating through the use of
+    improved support for the management of configurations. A configuration is defined as being built up from a system model and version selection rules.
+    The system model determines which files are used, while the version selection rules determine which version of the files (e.g. the latest versions or of a certain development state).
+    \item[Long transaction model]
+    The long transactions model takes a broader approach by assuming that a system is built up out of logical changes.
+    Its focus is on the coordination and integration of these changes. Basically, it uses versions of configurations and versions of files.
+    A configuration is created based on a change request which is stored separately. Files in this configuration can be synchronized using the check-out/check-in model.
+    When the change is completed, the complete configuration is stored back into the repository and integrated with other changes.
+    \item[Change set model]
+    The change set model also works based on change requests and has a lot in common with the long transactions model.
+    However, it starts with a certain configuration as the basis for changes. This is then changed according to the independent change requests that come in.
+    New configurations of the product are then created by applying sets of the independently stored changes on the baseline version.
+    \end{itemize}
+    \begin{itemize}
+    \item [Configuration Planning and Management:] A formal document and plan to guide the CM program that includes items such as:
+    Personnel; Responsibilities and Resources; Training requirements; Administrative meeting guidelines, including a definition of procedures and tools;
+    baselining processes; Configuration control and Configuration status accounting; Naming conventions; Audits and Reviews; and Subcontractor/Vendor CM requirements.
+    \item [Configuration Identification (CI):] Consists of setting and maintaining baselines, which define the system or subsystem architecture,
+    components, and any developments at any point in time. It is the basis by which changes to any part of an information system are identified, documented,
+    and later tracked through design, development, testing, and final delivery. CI incrementally establishes and maintains the definitive current basis for Configuration Status Accounting (CSA)
+    of a system and its configuration items (CIs) throughout their lifecycle (development, production, deployment, and operational support) until disposal.
+    \item[Configuration Control:] Includes the evaluation of all change requests and change proposals, and their subsequent approval or disapproval.
+    It is the process of controlling modifications to the system's design, hardware, firmware, software, and documentation.
+    \item[ Configuration Status Accounting:] Includes the process of recording and reporting configuration item descriptions (e.g., hardware, software, firmware, etc.) and all departures
+    from the baseline during design and production. In case of suspected problems, the verification of baseline configuration and approved modifications can be quickly determined.
+    \item[Configuration Verification and Audit:] An independent review of hardware and software for the purpose of assessing compliance with established performance requirements,
+    commercial and appropriate military standards, and functional, allocated, and product baselines. Configuration audits verify the system and subsystem configuration documentation
+    complies with their functional and physical performance characteristics before acceptance into an architectural baseline.
+    \end{itemize}
+    \bibliographystyle{plain}
+    \end{document}
