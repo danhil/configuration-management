@@ -160,6 +160,31 @@ The main question that occurs in different forms is: what program is this? This 
     \item[Configuration Verification and Audit:] An independent review of hardware and software for the purpose of assessing compliance with established performance requirements,
     commercial and appropriate military standards, and functional, allocated, and product baselines. Configuration audits verify the system and subsystem configuration documentation
     complies with their functional and physical performance characteristics before acceptance into an architectural baseline.
+
+    \section{The library metaphore- CI and branching pattern}
+    In a large project it is perferable to have one CM manager and responsible conififuration controllers for each sub part eg. hardware, software, library. The controlled area is the area
+    where the CI of a project are stored. The CI library can have soft copies and hard (physical) copies.There should be a straight forward strategy for submitting soft and hard copies.
+    \subsection{What needs controlling and what can be left out}
+    A CI is any part of the development and deliverable which need to be indevidually and independently identified, stored, tested, reviewed, used changed, delivered or maintained. There can be different 
+    granularity of CI elements/items, they should offer added value as they introduce added complexity. One CI is independent of all other CI´S.
+    If the component is included in: Would our ability to deliver the right system on tiḿe and within budget be impacted in any way if the element was lost/corrupted/wrong version? 
+    A CM should work towards fulfilling complete traceability. Should be notion of: version, access control, master, copy, relationships.
+    The main probems with CM: too much to soon(restricting development) or too little to late(Hard to regain traceability). The two tier model divides the configuration control into two levels:
+    the formal configuration level(total CM)(RELEASED,BASELINED etc) and the development configuration control(version handling)(DRAFTS). Both applied at the beginning but controls differ during development time... 
+    Create a CI plan that controls naming conventions etc. 
+    \subsection{Branching patterns for parallell SW development}
+    SCM structures can be explained as patterns:
+    \begin{itemize}
+    \item organizational patterns - define how the organization is structured.
+    \item architectural patterns - describe the software structure at a high level
+    \item process defining patters - describe structures, such as the project directory hierarchy which are defined at the beginning of a project.
+    \item maintaining patterns - patterns that affect the day to day workings of the organization
+    \end{itemize}
+    \subsubsection{Parallell development - branching}
+    Many of the parallell development problems can be traced back to system evolution, scale, multiple dimensions, knowledge distrobution.
+    There are differnt forms of branching - physical(files, components, subsytems), functional(features, logical changes), enviromental(win/nix), organizational(activities, tasks, roles, groups), procedural(teams work behaviours).
+    Codeline branch - persistant branch(enviromental), activity branch, non persistant(to be merged).
+    Saftey - nothing bad happens to the project . Codeline consistency(buildable codeline), reliability(eg. immutability of master branch baseline), integrity and stability, lost changes(simultaneous update, shared data), reappearing bugs(double maintenece).
     \end{itemize}
     \bibliographystyle{plain}
     \end{document}
