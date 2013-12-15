@@ -184,7 +184,89 @@ The main question that occurs in different forms is: what program is this? This 
     Many of the parallell development problems can be traced back to system evolution, scale, multiple dimensions, knowledge distrobution.
     There are differnt forms of branching - physical(files, components, subsytems), functional(features, logical changes), enviromental(win/nix), organizational(activities, tasks, roles, groups), procedural(teams work behaviours).
     Codeline branch - persistant branch(enviromental), activity branch, non persistant(to be merged).
-    Saftey - nothing bad happens to the project . Codeline consistency(buildable codeline), reliability(eg. immutability of master branch baseline), integrity and stability, lost changes(simultaneous update, shared data), reappearing bugs(double maintenece).
+    Saftey - nothing bad happens to the project . Codeline consistency(buildable codeline), reliability(eg. immutability of master branch baseline),
+    integrity and stability, lost changes(simultaneous update, shared data), reappearing bugs(double maintenece).
+    Liveness - increased work efficiency, increased coordination efforts, contention and work stoppages due to "busy waits".
+    Reuseability - reproduceability - reproduce contents of change, traceability-find the contents of the change, seperability-seperate wanted from unwanted changes.
+    Branches have policy patterns, creation patterns and structuring patterns, these patterns are underlined by the early branching(more safety, less productivity) or deferred branching patterns(less safety more productivity).
+    Branching/merging styles decide risk manegment strategies for organizing and integrating work activities.
+    \begin{itemize} Core set of branching patterns:
+    \item Mainline
+    \item Codeline policy
+    \item Codeline ownership
+    \item Merge early and often
+    \item Parallell maintenece/development lines
+    \item overlapping release lines
     \end{itemize}
+
+    Advice about branching in projects:
+    \begin{itemize}
+    \item Use meaningful branch names
+    \item Prefer branching over freezing
+    \item Integrate early and often
+    \item Branch on incompatailities
+    \item Perserve integrety and Consistency
+    \item Isolate change
+    \end{itemize}
+
+    Different patterns:
+    \begin{itemize}
+    \item[Early branching] - Branch early and often, branch per task, one codeline per release.
+    \item[Lazy/Late branching] - Wait until work conflicts with codeline and then branch, wait until logical change that is not needed/wanted in original codeline is implemented.
+    \item[Branch per task] - Fork of a new branch for each activity that effects the codeline, merge in when tested and complete.
+    \item[Codeline per release] - one branch per release to organize efforts focused on indevidual release, can use early or deferred branching.
+    \item[Subproject line] - Using branch per task and need to perform large task that can be split into several subtasks. Create branch for large task and branch on it for smaller tasks.
+    \item[Parallell maintenece/development line] - Create a maintenece and development branch of the mainline, propegate changes to codeline.
+    \item[Staged integration line ]- promotion line for different levels of code stabililty, when reach last level merge into the mainline.
+    \end{itemize}
+
+    \section{Identification and control}
+    Configuration control is the control of changes to the product and its documentation, the \textit{form, fit and function}. 
+    Need to pay special attention to:
+    \begin{itemize}
+    \item change request documentation
+    \item change request processing
+    \item total impact analysis
+    \item the descision
+    \item results incorporation and documentation
+    \item verification of the incorporation
+    \end{itemize}
+
+    There are different types of cm plans - project-to-customer, project-to-producer, neighbor to neighbor. The CM plan should be approved by a higher authority to ensure it fits into the context that
+    it is operating in. 
+    A CM plan normally consists of:
+    \begin{enumerate}
+    \item Introduction
+    \item Organization - responsibilitys and authoritys of various levels. Who - can do? is responsible? signs off? approves?
+    \item Identification - details of Identification, how the system will work, how things are done, naming,numbers identification etc.
+    \item Control - types of changes, classes of changes and priority processes and forms to be used.
+    \item Accounting - describe the system, the reports and the process.
+    \item Audits/Reviews - types, procedures and forms to be used and the verification interfaces. CM pagerticipation in program reviews.
+    \item Interface control - communication between modules of the product, the production or operation.
+    \item Subcontracts/Vendors - what CM we expect from subcontractors/vendors.
+    \item CM Resources
+    \end{enumerate}
+
+    \subsection{CM organization and change process}
+    CM placement is hard, too high --> ivory tower effect. Too low -> diminished impact.High enough for visibility, low enough for impact. Can be split eg. corporate/program level.
+    Four components of CM -> Identification, control, status accounting, audits should be taken care of.
+    Change in CM goes through three hierarchial levels: originator(recognition and analysis) ->  configuration manager(review of proposal and distrobution)
+    -> CCB(impact assesment and descision, documentation) -> developer(implementation, verification).
+    \subsubsection{CCB board} A permenently established committee of representatives of the major organizational elements. Has authority to act on proposed changes at its level.
+    Primary mission = ensure complete impact assessment and analysis and establishment of baselines.
+    \begin{itemize}
+    \item Meeting notice with agenda
+    \item minutes of meeting - with disposition
+    \item CCBDirective - the autorization of implementation. Contractual - should contain: Date, signature, implementer, change description, signoff on implementation, verification(Checked by CM or QA)
+    \end{itemize}
+    The change process allows for traceability and auditability. CCB is needed at every level of control, has authority to approve, defer, pass on change request.
+    \subsubsection{Interface control- the ICB}
+    Is used to Orchastrate an infrastructure to say \textit{who} is responsible for \textit{what}. It is connected with coordination and exchange of data.
+    The ICB is like the CCB but only for the detailed technical interfaces in the impact assessment process.
+    
+    \subsubsection{Configuration Identification}
+
+
+
     \bibliographystyle{plain}
     \end{document}
