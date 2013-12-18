@@ -1,4 +1,4 @@
-\documentclass{article}
+\beign{article}
 \usepackage[utf8]{inputenc}
 
 \title{EDAN10 - Summary and key concepts}
@@ -14,287 +14,318 @@
 
 \section{Week 1}
 The number of communication channels increases faster than the number of people involved in a project -->  more time spent coordinating work between people.
-The main question that occurs in different forms is: what program is this? This and resulting questions is due to coordnation failiure. Configureation manegement is the art of identifying, organizing and controlling modifications to software. Maximize productivity by minimizing mistakes.There are three types of main problems in CM: \\
+The main question that occurs in different forms is: what program is this? This and resulting questions is due to coordination failure. Configuration management is the art of identifying, organizing and controlling modifications to software. Maximize productivity by minimizing mistakes.There are three types of main problems in CM: \\
 
-    \begin{description}
-    \item[Double maintenece]
-    is the problem of keeping multiple identical copies of software. Bugfixes must be identical in each copy. Multiple copies inadvertantly diverge over time.
+\begin{description}
+    \item[Double maintenance]
+    is the problem of keeping multiple identical copies of software. Bugfixes must be identical in each copy. Multiple copies inadvertently diverge over time.
     \item[Shared data]
-    arises when multiple people are simultaniously accessing and modifying the same data --> interference due to simultanious changes on the same code.
-    \item[Simultanious update] is the problem that arises when the same software is simultaniously updated, can lead to loss of changes. \ldots
-    \end{description}
+    arises when multiple people are simultaneously accessing and modifying the same data --> interference due to simultaneous changes on the same code.
+    \item[Simultaneous update] is the problem that arises when the same software is simultaneously updated, can lead to loss of changes. \ldots
+\end{description}
 
-    \subsection{Program families}
-    The purpose of professional software development is to build a program family --> alternative forms of the same program. The CM  strategy must successfully control all of the members of a program family to keep programs identical in the way they are supposed to be and different in the way that they are supposed to be different. Need to record and understand the different program versions and be able to produce the correct version to fill a perticular demand. To solve the double maintenece problem a program \textit{libary} is built up that contains modules. The list of modules representing a program is called the \textit{configuration}the process of selecting the modules is called \textit{configuring} the program.
-    The library should reflect the relationships between the modules and create an understanding of the ways in which the versions differ and in which ways they are the same. Two different kinds of versions: \textit{revisions} and \textit{variations}.
+\subsection{Program families}
+The purpose of professional software development is to build a program family --> alternative forms of the same program. The CM  strategy must successfully control all of the members of a program family to keep programs identical in the way they are supposed to be and different in the way that they are supposed to be different. Need to record and understand the different program versions and be able to produce the correct version to fill a particular demand. To solve the double maintenance problem a program \textit{library} is built up that contains modules. The list of modules representing a program is called the \textit{configuration}the process of selecting the modules is called \textit{configuring} the program.
+The library should reflect the relationships between the modules and create an understanding of the ways in which the versions differ and in which ways they are the same. Two different kinds of versions: \textit{revisions} and \textit{variations}.
 
-    \subsubsection{revisions}
-    A revision is a new version of a module intended to superceed the previous verision. Old versions of a program are needed to eg reproduce bugs.
+\subsubsection{revisions}
+A revision is a new version of a module intended to supersede the previous version. Old versions of a program are needed to eg reproduce bugs.
 
-    \subsubsection{variations}
-    Module variations fulfill the same function for slightly different situations, alternative interchangable parts. Variations coexist as equal alternatives. Stubs used to mask out modules for eg testing purposes.
-    Storing versions of modules can be done as seperate files, can be identified by naming conventions --> double maintenece. Deltas means to store one full version of a file and represent differences as deltas, contains the full description of differences between two files. Drawback is that if the main file is lost or corrupted all versions are lost, hard to represent where the differences are in a file.
-    Conditional compliation of a source file can be used to mask out the differences, this however can lead to increased compexity of reading and modifying code. Better for storing versions but not revisions.
+\subsubsection{variations}
+Module variations fulfill the same function for slightly different situations, alternative interchangeable parts. Variations coexist as equal alternatives. Stubs used to mask out modules for eg testing purposes.
+Storing versions of modules can be done as separate files, can be identified by naming conventions --> double maintenance. Deltas means to store one full version of a file and represent differences as deltas, contains the full description of differences between two files. Drawback is that if the main file is lost or corrupted all versions are lost, hard to represent where the differences are in a file.
+Conditional compilation of a source file can be used to mask out the differences, this however can lead to increased complexity of reading and modifying code. Better for storing versions but not revisions.
 
-    \subsection{Derivations}
-    The history/composition of a program is its derivation. Knowing history and derivation helps debugging. Derivations must be precise and show exactly which modules and what revisions of these modules were linked to form a build. A derivation of a program requires identification of:
+\subsection{Derivations}
+The history/composition of a program is its derivation. Knowing history and derivation helps debugging. Derivations must be precise and show exactly which modules and what revisions of these modules were linked to form a build. A derivation of a program requires identification of:
 
-    \begin{itemize}
+\begin{itemize}
     \item Linker compiler used to build program
     \item data input
     \item options and arguments in build
     \item reason of why the options and arguments were used
-    \item persom responsible for build
+    \item person responsible for build
     \item date and time of build
-    \end{itemize}
-    Should be kept for source code, object code and executable images etc.
-    Unique identification of objects under CM is important.
+\end{itemize}
+Should be kept for source code, object code and executable images etc.
+Unique identification of objects under CM is important.
 
-    \subsection{Reproducibility}
-    Reproducibility is needed to be able to reproduce exactly the program that is intended.
-    Anything that appears in a derivation must be \textit{frozen} implies both immutibility and protection against deletion.
+\subsection{Reproducibility}
+Reproducibility is needed to be able to reproduce exactly the program that is intended.
+Anything that appears in a derivation must be \textit{frozen} implies both immutability and protection against deletion.
 
-    \subsection{Baselines and private workspaces}
-    Importent to have stability to develop software successfully. Solution to team coordination problem is to use a project \textit{baseline} in conjunction with indevidual workspaces for developers.The \textit{baseline} is the shared project database that contains all of the components from which the product is derived, it contains the library of modules and is tightly controlled in respect to code modifications. Each programmer has a private workspace which contains informaion from the baseline. Simultanious update problem can be replaced by serial update if checkout-lock-checkin process is used, however normally optimistic concurrency process is used where checkout/checkin does not lock, instad long transactions lead to merges.
+\subsection{Baselines and private workspaces}
+Important to have stability to develop software successfully. Solution to team coordination problem is to use a project \textit{baseline} in conjunction with individual workspaces for developers.The \textit{baseline} is the shared project database that contains all of the components from which the product is derived, it contains the library of modules and is tightly controlled in respect to code modifications. Each programmer has a private workspace which contains information from the baseline. Simultaneous update problem can be replaced by serial update if checkout-lock-checkin process is used, however normally optimistic concurrency process is used where checkout/checkin does not lock, instead long transactions lead to merges.
 
-    \section{Week 2}
-    Workshops are a good way of introducing SCM  to a company because:
+\section{Week 2}
+Workshops are a good way of introducing SCM  to a company because:
 
-    \begin{itemize}
+\begin{itemize}
     \item Evolution of company wide processes and plans.
-    \end{itemize}
-    Three main concepts:
-
-    \begin{itemize}
-    \item[Construction site -- collaborative work -- putting it together] there is a need to collaborate, coordinate and communicate. Need of parallell work, although for coordination some work may be done in serial. Parallell work --> copy for all --> double maintenece, temporary copy for all that is submitted --> simultanious maintenece. Change --> need tracability between change request and implementation--> CCB to evaluate. Communication, need good communication bandwidth --> good documentation, comments codeing standards. Communicate through artefacts.
-    \item[ The study -- private workspace -- getting work done] need good rules of conduct and rules.
-    Have artefacts in a central repository, need for immutable isolated objects to work on --> no work on central repository. Tools can be chosen indevidually if no need for reproducability. A configuration is called partially bound if it can if the exact versions can vary over time. Bound configuration is needed for reproducibility --> can form a baseline --> basis for further development formal change manegment is needed.
-    \item[ The library -- store, recrate and register -- collecting, sharing, using knowledge]
-    Every stable issue of an artefact is a version in versioning tool. Tool should impose structure on how versions develop from each other and keep track of all information about different versions. Version graphs, branching, merging.\ldots
-    \item[Conclusions] Keep good contact with manegment and have their support.
+\end{itemize}
+Three main concepts:
+\begin{itemize}
+    \item Construction site -- collaborative work -- putting it together \\there is a need to collaborate, coordinate and communicate. Need of parallel work, although for coordination some work may be done in serial. Parallel work --> copy for all --> double maintenance, temporary copy for all that is submitted --> simultaneous maintenance. Change --> need traceability between change request and implementation--> CCB to evaluate. Communication, need good communication bandwidth --> good documentation, comments coding standards. Communicate through artefacts.
+    \item The study -- private workspace -- getting work done need good rules of conduct and rules. \\
+    Have artefacts in a central repository, need for immutable isolated objects to work on --> no work on central repository. Tools can be chosen individually if no need for reproducibility. A configuration is called partially bound if it can if the exact versions can vary over time. Bound configuration is needed for reproducibility --> can form a baseline --> basis for further development formal change management is needed.
+    \item The library -- store, create and register -- collecting, sharing, using knowledge  \\
+    Every stable issue of an artefact is a version in versioning tool. Tool should impose structure on how versions develop from each other and keep track of all information about different versions. Version graphs, branching, merging.
+    \item Conclusions Keep good contact with management and have their support.
     \item The study -- the personal workspace
     \item The library -- the use and organisation of collective knowledge
-    \end{itemize}
+\end{itemize}
 
-    \subsection{ Different cases of distrobuted development}
-    \begin{itemize}
-    \item [Locally] group awareness, right tools, common file system.
-    \item [Distance working] Bringing home files, little awareness of others doings, cm tools can help. Remote login.
-    \item [Co-located groups] Groups working on eg differnt modules. Files stored in different file systems but same CM system. Important to maintain knowledge of development status between groups. Change management of common componenets is of imporance.
-    \item [Distrobuted groups] Not only are projects distrobuted, members are also distrobuted. Communication, meetings not even between members. Important to support division of files and concurrent development.
-    \item [Architectures for distrobuted development]
-    \begin{itemize}
-    \item [Remote login] needs a good connection to the server everyone works at same site - good.
-    \item [Local files that are pushed to server] CM tool based.
-    \item [ Several sites by master-slave connection] The files copied to slave can not be modified anywhere else.
-    \item [ Several sites with areas of responsibility] Only the files connected to the responsibility can be modified. More permanent division of permissions lead to automated synchronization.
-    \item [ Several sites with equal servers ] Several mirrored/sycnhronized servers. Hard to sycnhronize and resolve merge conflicts.
+\subsection{ Different cases of distributed development}
+\begin{itemize}
+    \item Locally group awareness, right tools, common file system.
+    \item Distance working Bringing home files, little awareness of others doings, cm tools can help. Remote login.
+    \item Co-located groups Groups working on eg different modules. Files stored in different file systems but same CM system. Important to maintain knowledge of development status between groups. Change management of common components is of importance.
+    \item Distributed groups Not only are projects distributed, members are also distributed. Communication, meetings not even between members. Important to support division of files and concurrent development.
+\end{itemize}
+\subsection{Architectures for distributed development}
+\begin{itemize}
+    \item Remote login needs a good connection to the server everyone works at same site - good.
+    \item Local files that are pushed to server CM tool based.
+    \item Several sites by master-slave connection The files copied to slave can not be modified anywhere else.
+    \item Several sites with areas of responsibility Only the files connected to the responsibility can be modified. More permanent division of permissions lead to automated synchronization.
+    \item Several sites with equal servers Several mirrored/synchronized servers. Hard to synchronize and resolve merge conflicts.
+\end{itemize}
 
 
-    \subsection{Distrobuted development challenges producer/consumer or shared source code.}
-    \begin{itemize}
-    \item[Organization] Who is responsible for the overall project/manegerial issues/system architecture? Who are the team members for the project? -- Super project organizational structure.
-    \item[Communication] Establish system architecture upfront, developers working towards the same goal, what tools are used, software development enviroment. Minimize dependencies between software component groups and maximize communication bandwidth.
-    \item[Producer consumer scenario]
-    \begin{itemize}
-    \item Define the system architecture and assign components to each colocated team
-    \item Assign a common architect whom is responsible for designing the common architecture and making the final descisions.
-    \item Assign a project manager whom has the responsibility for defining the integration plan and tracking the progress of each project iteration.
-    \item There are differnt branching strategies as: branch per user, per site, per activity etc.
-    \end{itemize}
-    \end{itemize}
+\subsection{Distributed development challenges producer/consumer or shared source code.}
+\begin{itemize}
+    \item Organization Who is responsible for the overall project/managerial issues/system architecture? Who are the team members for the project? -- Super project organizational structure.
+    \item Communication Establish system architecture upfront, developers working towards the same goal, what tools are used, software development environment. Minimize dependencies between software component groups and maximize communication bandwidth.
+\end{itemize}
+\subsection{Producer consumer scenario}
+\begin{itemize}
+    \item Define the system architecture and assign components to each collocated team
+    \item Assign a common architect whom is responsible for designing the common architecture and making the final decisions.
+    \item Assign a project manager who has the responsibility for defining the integration plan and tracking the progress of each project iteration.
+    \item There are different branching strategies as: branch per user, per site, per activity etc.
+\end{itemize}
 
-    \section{ Week 3 - the study metaphore}
-    \subsection{Defining and building configurations} 
-    Configuration --> collection of elements that fulfill a specific purpose. Inputs to the process of building a configuration is : source elements, system model, version selection, derived elements -> incremental building.
-    To build a make file: parametrise, automate and manage errors. Use directories to hold configuration, eg dev stable main etc. Build a directory tree structure for modules where each one has dev, main etc.
-    Makes limitations are : lacks version selection support, does not register tools and options used for building.
+\section{ Week 3 - the study metaphor}
+\subsection{Defining and building configurations} 
+Configuration --> collection of elements that fulfill a specific purpose. Inputs to the process of building a configuration is : source elements, system model, version selection, derived elements -> incremental building.
+To build a makefile: parametrized, automate and manage errors. Use directories to hold configuration, eg dev stable main etc. Build a directory tree structure for modules where each one has dev, main etc.
+Makes limitations are : lacks version selection support, does not register tools and options used for building.
 
-    \subsection{Builds}
-    \begin{itemize}
-    \item[Development enviroment] Best goal for development enviroments is reproduceibility. Can vary when flexibility is needed bu can be invariant when reproduceibility is needed.
-    \item [ Distrobuted and not distrobuted enviroments] Fully distrobuted development or build enviroments ensures consistancy in builds and development platform. Nondistrobuted faster but harder to maintain.
-    Conforming reproduceibility is harder on distrobuted systems as dependencies are spawned throughout the network. In order to confirm the reliability of a distrobuted development system we must create a non distrobuted version of the system.
-    \item[Tools] Choosing build or other tools is done with consideration to Licensing, Maintenence, Life expectency and features. 
-    \item [Build reproduceibility] in assesing reproduceibility the three factors of : build, runtime, development and execution enviroments should be taken into account.
-    \end{itemize}
+\subsection{Builds}
+\begin{itemize}
+    \item Development environment Best goal for development environments is reproducibility. Can vary when flexibility is needed but can be invariant when reproducibility is needed.
+    \item Distributed and not distributed environments Fully distributed development or build environments ensures consistency in builds and development platform. Undistributed faster but harder to maintain.
+    Conforming reproducibility is harder on distributed systems as dependencies are spawned throughout the network. In order to confirm the reliability of a distributed development system we must create a non distributed version of the system.
+    \item[Tools] Choosing build or other tools is done with consideration to Licensing, Maintenance, Life expectancy and features. 
+    \item Build reproducibility  in assessing reproducibility the three factors of : build, runtime, development and execution environments should be taken into account.
+\end{itemize}
 
-    \subsection{Peter Feiler - CM models}
-    CM provides stability to the production of a SW system by controlling the product evolution through; Configuration identification, Configuration control, Configuration status accounting and Configuration audit.
-    \begin{itemize}
-    \item [ Check-out/check-in model]
-    In the check-out/check-in model, the version support of indevidual files is the focus. Files are stored individually in a repository from which they are checked out whenever the files are accessed, and checked in when they have changed.
+\subsection{Peter Feiler - CM models}
+CM provides stability to the production of a SW system by controlling the product evolution through; Configuration identification, Configuration control, Configuration status accounting and Configuration audit.
+\begin{itemize}
+    \item Check-out/check-in model
+    In the checkout/check-in model, the version support of individual files is the focus. Files are stored individually in a repository from which they are checked out whenever the files are accessed, and checked in when they have changed.
     This repository can store multiple versions of the files but has no notion of logical changes. Supports sequential version history and version branching(independant development path, different versions etc).
     The basic mechanism used to prevent conflicts by simultaneous modifications is that of locking.
-    \item[Composition model]
-    The composition model is an extension on the check-out/check-in model. This model allows developers to think in configurations instead of individual files and supports the handleing of a configuration history.
-    Although the complete check-out/check-in model is represented in the composition model, it enables the use of different strategies for updating through the use of
+    \item Composition model 
+    The composition model is an extension on the checkout/check-in model. This model allows developers to think in configurations instead of individual files and supports the handling of a configuration history.
+    Although the complete checkout/check-in model is represented in the composition model, it enables the use of different strategies for updating through the use of
     improved support for the management of configurations. A configuration is defined as being built up from a system model and version selection rules.
     The system model determines which files are used, while the version selection rules determine which version of the files (e.g. the latest versions or of a certain development state).Variants are represented by branches
-    and identified by branch lables. Limitation:  Variant and logical change information is contained in the naming conventions.
-    \item[Long transaction model]
+    and identified by branch labels. Limitation:  Variant and logical change information is contained in the naming conventions.
+    \item Long transaction model
     The long transactions model takes a broader approach by assuming that a system is built up out of logical atomic changes.A change is performed as a transaction, not visible until commit a commit creates a new version
     of the modified data elements. Consists of a workspace and concurrency control scheme, workspaces are supported by the CM tool and local history etc. Optimistic concurrency scheme allows local workspaces to 
-    modify same component, conflicts are recognized on checkin.
+    modify same component, conflicts are recognized on check in.
     Its focus is on the coordination and integration of these changes. Basically, it uses versions of configurations and versions of files.
     A configuration is created based on a change request which is stored separately. Files in this configuration can be synchronized using the check-out/check-in model.
     When the change is completed, the complete configuration is stored back into the repository and integrated with other changes.
-    \item[Change set model]
+    \item Change set model
     The change set model also works based on change requests and has a lot in common with the long transactions model. Represents the set of modifications to different components that make up
     a logical change and thus provides natural link to change requests. However, it starts with a certain configuration as the basis for changes.
     This is then changed according to the independent change requests that come in.
     New configurations of the product are then created by applying sets of the independently stored changes on the baseline version.
-    \end{itemize}
-    \begin{itemize}
-    \item [Configuration Planning and Management:] A formal document and plan to guide the CM program that includes items such as:
+\end{itemize}
+\begin{itemize}
+    \item Configuration Planning and Management:
+    A formal document and plan to guide the CM program that includes items such as:
     Personnel; Responsibilities and Resources; Training requirements; Administrative meeting guidelines, including a definition of procedures and tools;
     baselining processes; Configuration control and Configuration status accounting; Naming conventions; Audits and Reviews; and Subcontractor/Vendor CM requirements.
-    \item [Configuration Identification (CI):] Consists of setting and maintaining baselines, which define the system or subsystem architecture,
+    \item Configuration Identification (CI):
+    Consists of setting and maintaining baselines, which define the system or subsystem architecture,
     components, and any developments at any point in time. It is the basis by which changes to any part of an information system are identified, documented,
     and later tracked through design, development, testing, and final delivery. CI incrementally establishes and maintains the definitive current basis for Configuration Status Accounting (CSA)
     of a system and its configuration items (CIs) throughout their lifecycle (development, production, deployment, and operational support) until disposal.
-    \item[Configuration Control:] Includes the evaluation of all change requests and change proposals, and their subsequent approval or disapproval.
+    \item Configuration Control:
+    Includes the evaluation of all change requests and change proposals, and their subsequent approval or disapproval.
     It is the process of controlling modifications to the system's design, hardware, firmware, software, and documentation.
-    \item[ Configuration Status Accounting:] Includes the process of recording and reporting configuration item descriptions (e.g., hardware, software, firmware, etc.) and all departures
+    \item Configuration Status Accounting:
+    Includes the process of recording and reporting configuration item descriptions (e.g., hardware, software, firmware, etc.) and all departures
     from the baseline during design and production. In case of suspected problems, the verification of baseline configuration and approved modifications can be quickly determined.
-    \item[Configuration Verification and Audit:] An independent review of hardware and software for the purpose of assessing compliance with established performance requirements,
+    \item Configuration Verification and Audit:
+    An independent review of hardware and software for the purpose of assessing compliance with established performance requirements,
     commercial and appropriate military standards, and functional, allocated, and product baselines. Configuration audits verify the system and subsystem configuration documentation
     complies with their functional and physical performance characteristics before acceptance into an architectural baseline.
+\end{itemize}
 
-    \section{The library metaphore- CI and branching pattern}
-    In a large project it is perferable to have one CM manager and responsible conififuration controllers for each sub part eg. hardware, software, library. The controlled area is the area
-    where the CI of a project are stored. The CI library can have soft copies and hard (physical) copies.There should be a straight forward strategy for submitting soft and hard copies.
-    \subsection{What needs controlling and what can be left out}
-    A CI is any part of the development and deliverable which need to be indevidually and independently identified, stored, tested, reviewed, used changed, delivered or maintained. There can be different 
-    granularity of CI elements/items, they should offer added value as they introduce added complexity. One CI is independent of all other CI´S.
-    If the component is included in: Would our ability to deliver the right system on tiḿe and within budget be impacted in any way if the element was lost/corrupted/wrong version? 
-    A CM should work towards fulfilling complete traceability. Should be notion of: version, access control, master, copy, relationships.
-    The main probems with CM: too much to soon(restricting development) or too little to late(Hard to regain traceability). The two tier model divides the configuration control into two levels:
-    the formal configuration level(total CM)(RELEASED,BASELINED etc) and the development configuration control(version handling)(DRAFTS). Both applied at the beginning but controls differ during development time... 
-    Create a CI plan that controls naming conventions etc. 
-    \subsection{Branching patterns for parallell SW development}
-    SCM structures can be explained as patterns:
-    \begin{itemize}
+\section{The library metaphor- CI and branching pattern}
+In a large project it is preferable to have one CM manager and responsible configuration controllers for each sub part eg. hardware, software, library. The controlled area is the area
+where the CI of a project are stored. The CI library can have soft copies and hard (physical) copies.There should be a straightforward strategy for submitting soft and hard copies.
+\subsection{What needs controlling and what can be left out}
+A CI is any part of the development and deliverable which need to be individually and independently identified, stored, tested, reviewed, used changed, delivered or maintained. There can be different 
+granularity of CI elements/items, they should offer added value as they introduce added complexity. One CI is independent of all other CIS.
+If the component is included in: Would our ability to deliver the right system on time and within budget be impacted in any way if the element was lost/corrupted/wrong version? 
+A CM should work towards fulfilling complete traceability. Should be notion of: version, access control, master, copy, relationships.
+The main problems with CM: too much too soon(restricting development) or too little too late(Hard to regain traceability). The two tier model divides the configuration control into two levels:
+the formal configuration level(total CM)(RELEASED,BASELINED etc) and the development configuration control(version handling)(DRAFTS). Both applied at the beginning but controls differ during development time... 
+Create a CI plan that controls naming conventions etc. 
+\subsection{Branching patterns for parallel SW development}
+SCM structures can be explained as patterns:
+\begin{itemize}
     \item organizational patterns - define how the organization is structured.
     \item architectural patterns - describe the software structure at a high level
-    \item process defining patters - describe structures, such as the project directory hierarchy which are defined at the beginning of a project.
+    \item process defining patterns - describe structures, such as the project directory hierarchy which are defined at the beginning of a project.
     \item maintaining patterns - patterns that affect the day to day workings of the organization
-    \end{itemize}
-    \subsubsection{Parallell development - branching}
-    Many of the parallell development problems can be traced back to system evolution, scale, multiple dimensions, knowledge distrobution.
-    There are differnt forms of branching - physical(files, components, subsytems), functional(features, logical changes), enviromental(win/nix), organizational(activities, tasks, roles, groups), procedural(teams work behaviours).
-    Codeline branch - persistant branch(enviromental), activity branch, non persistant(to be merged).
-    Saftey - nothing bad happens to the project . Codeline consistency(buildable codeline), reliability(eg. immutability of master branch baseline),
-    integrity and stability, lost changes(simultaneous update, shared data), reappearing bugs(double maintenece).
-    Liveness - increased work efficiency, increased coordination efforts, contention and work stoppages due to "busy waits".
-    Reuseability - reproduceability - reproduce contents of change, traceability-find the contents of the change, seperability-seperate wanted from unwanted changes.
-    Branches have policy patterns, creation patterns and structuring patterns, these patterns are underlined by the early branching(more safety, less productivity) or deferred branching patterns(less safety more productivity).
-    Branching/merging styles decide risk manegment strategies for organizing and integrating work activities.
-    \begin{itemize} Core set of branching patterns:
+\end{itemize}
+\subsubsection{Parallel development - branching}
+Many of the parallel development problems can be traced back to system evolution, scale, multiple dimensions, knowledge distribution.
+There are different forms of branching - physical(files, components, subsystems), functional(features, logical changes), enviromental(win/nix), organizational(activities, tasks, roles, groups), procedural(teams work behaviours).
+Codeline branch - persistent branch(environmental), activity branch, non persistent(to be merged).
+Safety - nothing bad happens to the project . Codeline consistency(buildable codeline), reliability(eg. immutability of master branch baseline),
+integrity and stability, lost changes(simultaneous update, shared data), appearing bugs(double maintenance).
+Liveness - increased work efficiency, increased coordination efforts, contention and work stoppages due to "busy waits".
+Reusability - reproducibility - reproduce contents of change, traceability-find the contents of the change, separability-separate wanted from unwanted changes.
+Branches have policy patterns, creational patterns and structuring patterns, these patterns are underlined by the early branching(more safety, less productivity) or deferred branching patterns(less safety more productivity).
+Branching/merging styles decide risk management strategies for organizing and integrating work activities.
+Core set of branching patterns:
+\begin{itemize}
     \item Mainline
     \item Codeline policy
-    \item Codeline ownership
+    \item Code Line ownership
     \item Merge early and often
-    \item Parallell maintenece/development lines
+    \item Parallel maintenance/development lines
     \item overlapping release lines
-    \end{itemize}
+\end{itemize}
 
-    Advice about branching in projects:
-    \begin{itemize}
+Advice about branching in projects:
+\begin{itemize}
     \item Use meaningful branch names
     \item Prefer branching over freezing
     \item Integrate early and often
-    \item Branch on incompatailities
-    \item Perserve integrety and Consistency
+    \item Branch on incompatibilities
+    \item Preserve integrity and Consistency
     \item Isolate change
-    \end{itemize}
+\end{itemize}
 
-    Different patterns:
-    \begin{itemize}
-    \item[Early branching] - Branch early and often, branch per task, one codeline per release.
-    \item[Lazy/Late branching] - Wait until work conflicts with codeline and then branch, wait until logical change that is not needed/wanted in original codeline is implemented.
-    \item[Branch per task] - Fork of a new branch for each activity that effects the codeline, merge in when tested and complete.
-    \item[Codeline per release] - one branch per release to organize efforts focused on indevidual release, can use early or deferred branching.
-    \item[Subproject line] - Using branch per task and need to perform large task that can be split into several subtasks. Create branch for large task and branch on it for smaller tasks.
-    \item[Parallell maintenece/development line] - Create a maintenece and development branch of the mainline, propegate changes to codeline.
-    \item[Staged integration line ]- promotion line for different levels of code stabililty, when reach last level merge into the mainline.
-    \end{itemize}
+Different patterns:
+\begin{itemize}
+    \item Early branching - Branch early and often, branch per task, one codeline per release.
+    \item Lazy/Late branching - Wait until work conflicts with codeline and then branch, wait until logical change that is not needed/wanted in original codeline is implemented.
+    \item Branch per task - Fork of a new branch for each activity that affects the codeline, merge in when tested and complete.
+    \item Code Line per release - one branch per release to organize efforts focused on individual release, can use early or deferred branching.
+    \item Subproject line - Using branch per task and need to perform large task that can be split into several subtasks. Create branch for large task and branch on it for smaller tasks.
+    \item Parallel maintenance/development line - Create a maintenance and development branch of the mainline, propagate changes to codeline.
+    \item Staged integration line - promotion line for different levels of code stability, when reach last level merge into the mainline.
+\end{itemize}
 
-    \section{Identification and control}
-    Configuration control is the control of changes to the product and its documentation, the \textit{form, fit and function}. 
-    Need to pay special attention to:
-    \begin{itemize}
+\section{Identification and control}
+Configuration control is the control of changes to the product and its documentation, the \textit{form, fit and function}. 
+Need to pay special attention to:
+\begin{itemize}
     \item change request documentation
     \item change request processing
     \item total impact analysis
-    \item the descision
+    \item the decision
     \item results incorporation and documentation
     \item verification of the incorporation
-    \end{itemize}
+\end{itemize}
 
-    There are different types of cm plans - project-to-customer, project-to-producer, neighbor to neighbor. The CM plan should be approved by a higher authority to ensure it fits into the context that
-    it is operating in. 
-    A CM plan normally consists of:
-    \begin{enumerate}
+There are different types of cm plans - project-to-customer, project-to-producer, neighbor to neighbor. The CM plan should be approved by a higher authority to ensure it fits into the context that
+it is operating in. 
+A CM plan normally consists of:
+\begin{enumerate}
     \item Introduction
-    \item Organization - responsibilitys and authoritys of various levels. Who - can do? is responsible? signs off? approves?
+    \item Organization - responsibilities and authorities of various levels. Who - can do? is responsible? signs off? approves?
     \item Identification - details of Identification, how the system will work, how things are done, naming,numbers identification etc.
     \item Control - types of changes, classes of changes and priority processes and forms to be used.
     \item Accounting - describe the system, the reports and the process.
-    \item Audits/Reviews - types, procedures and forms to be used and the verification interfaces. CM pagerticipation in program reviews.
+    \item Audits/Reviews - types, procedures and forms to be used and the verification interfaces. CM participation in program reviews.
     \item Interface control - communication between modules of the product, the production or operation.
-    \item Subcontracts/Vendors - what CM we expect from subcontractors/vendors.
+    \item Subcontractors/Vendors - what CAN we expect from subcontractors/vendors.
     \item CM Resources
-    \end{enumerate}
+\end{enumerate}
 
-    \subsection{CM organization and change process}
-    CM placement is hard, too high --> ivory tower effect. Too low -> diminished impact.High enough for visibility, low enough for impact. Can be split eg. corporate/program level.
-    Four components of CM -> Identification, control, status accounting, audits should be taken care of.
-    Change in CM goes through three hierarchial levels: originator(recognition and analysis) ->  configuration manager(review of proposal and distrobution)
-    -> CCB(impact assesment and descision, documentation) -> developer(implementation, verification).
-    \subsubsection{CCB board} A permenently established committee of representatives of the major organizational elements. Has authority to act on proposed changes at its level.
-    Primary mission = ensure complete impact assessment and analysis and establishment of baselines.
-    \begin{itemize}
+\subsection{CM organization and change process}
+CM placement is hard, too high --> ivory tower effect. Too low -> diminished impact.High enough for visibility, low enough for impact. Can be split eg. corporate/program level.
+Four components of CM -> Identification, control, status accounting, audits should be taken care of.
+Change in CM goes through three hierarchical levels: originator(recognition and analysis) ->  configuration manager(review of proposal and distribution)
+-> CCB(impact assessment and decision, documentation) -> developer(implementation, verification).
+\subsubsection{CCB board} A permanently established committee of representatives of the major organizational elements. Has authority to act on proposed changes at its level.
+Primary mission = ensure complete impact assessment and analysis and establishment of baselines.
+\begin{itemize}
     \item Meeting notice with agenda
     \item minutes of meeting - with disposition
-    \item CCBDirective - the autorization of implementation. Contractual - should contain: Date, signature, implementer, change description, signoff on implementation, verification(Checked by CM or QA)
-    \end{itemize}
-    The change process allows for traceability and auditability. CCB is needed at every level of control, has authority to approve, defer, pass on change request.
-    \subsubsection{Interface control- the ICB}
-    Is used to Orchastrate an infrastructure to say \textit{who} is responsible for \textit{what}. It is connected with coordination and exchange of data.
-    The ICB is like the CCB but only for the detailed technical interfaces in the impact assessment process.
-    
-    \subsection{Configuration Identification - traceability}
-    ... is the process of recording and communicating information about the requirements, the design or the actual product. Units are broken down i a top-down fashion.
-    Define the form-fit-function of the product. Requires developing effective naming conventions and good written procedures for CI, these need constant evaluation to ensure their completeness,
-    adequacy and applicability. A CI is an item which we want to focus on in the CM process. A CI is created in the process of decompositon, a top down process of dividing a product into related and subordinated parts.
-    Too many CIs will effect visibility and will constrict the production process while too little will create maintenece difficulties. In the hirarchy of naming where a component can be liked 
-    to its parents there are insignificant numbers and significant numbers, want as many significant numbers as possible.
-    Baselines - baselines assures anyone that the product is what it was intended to be, both in form, fit and function. Baseline assures us that the product is defined by documents.
-    A baseline is a point of departure for changes or product progression and also is a reference and control point for repeatability and reproduceability. There are different baselines for eg:
-    Specification, detailed specification, architecture, implementation, testing, shipping, maintenece...
-    
-    \subsection{The CM managers identification responsibility}
-    CI manager is an idvisor in the process of CI selection, naming standards  and decompositon, responible for producing the listing for this decompositon. The CM manager has the control
-    function for the baseline manegment. The main task of the CM is to create a medium to trace the requirements to the final product, this medium is then the responsibility of the cm manager.
+    \item CCB Directive - the authorization of implementation. Contractual - should contain: Date, signature, implementer, change description, signoff on implementation, verification(Checked by CM or QA)
+\end{itemize}
+The change process allows for traceability and auditability. CCB is needed at every level of control, has authority to approve, defer, pass on change request.
+\subsubsection{Interface control- the ICB}
+Is used to Orchestrate an infrastructure to say \textit{who} is responsible for \textit{what}. It is connected with coordination and exchange of data.
+The ICB is like the CCB but only for the detailed technical interfaces in the impact assessment process.
 
-    \subsection{ Configuration status accounting}
-    Provides traceability and status information within the configuration manegment process. Provides for comminications and feedback on the product. Documents interfaces, ICD and CCB activities.
-    By using CSA we can see where we are and whay we have built - places everything together to get the whole picture. It is the way in which products or the output of configuration control, identification and audits
-    are recorded stored and reported.
-    \subsection{Audits and reviews}
-    Configuration audits - verify that the technical documentation matches and reflects the product performance.
-    Formal audits are a configuration management verification activity. CI compared with its configuration documentation.
-    Audits provide an arena for interfaces with other program disceplines eg QA, verification and validation.
-    Functional audit and a form and fit audit(FCA- "functional configuration audit", PCA - "physical configuration audit").
-    In an audit we need, checklist, target, chairperson, recorder. Can result in action items(problem resolutions) that are completed.
+\subsection{Configuration Identification - traceability}
+... is the process of recording and communicating information about the requirements, the design or the actual product. Units are broken down a top-down fashion.
+Define the form-fit-function of the product. Requires developing effective naming conventions and good written procedures for CI, these need constant evaluation to ensure their completeness,
+adequacy and applicability. A CI is an item which we want to focus on in the CM process. A CI is created in the process of decomposition, a top down process of dividing a product into related and subordinated parts.
+Too many CIs will affect visibility and will constrict the production process while too little will create maintenance difficulties. In the hierarchy of naming where a component can be liked 
+to its parents there are insignificant numbers and significant numbers, want as many significant numbers as possible.
+Baselines - baselines assures anyone that the product is what it was intended to be, both in form, fit and function. Baseline assures us that the product is defined by documents.
+A baseline is a point of departure for changes or product progression and also is a reference and control point for repeatability and reproducibility. There are different baselines for eg:
+Specification, detailed specification, architecture, implementation, testing, shipping, maintenance...
 
-    \subsection{Impact analysis}
-    Is about accuratly estimating the scope of changes. Dependancy analysis and traceability analysis. Static and dynamic analysis is like lexical analysis.
-    Ripple effects - the unwanted side effects of change as eg. interface change, enviroment change, requirement change etc.
-    Steps - understand software change and determine impact --> Specify and design software change -> implement software change.
-    Can create dependency graphs or matrixes. Can be data-flow, definition, calling or functional dependencies.
-    Transistive closure shows all paths from u to v. Inferencing systems use rules to characterise relationships among components.
+\subsection{The CM managers identification responsibility}
+CI manager is an advisor in the process of CI selection, naming standards  and decomposition, responsible for producing the listing for this decomposition. The CM manager has the control
+function for the baseline management. The main task of the CM is to create a medium to trace the requirements to the final product, this medium is then the responsibility of the cm manager.
 
-    \bibliographystyle{plain}
-    \end{document}
+\subsection{ Configuration status accounting}
+Provides traceability and status information within the configuration management process. Provides for communications and feedback on the product. Documents interfaces, ICD and CCB activities.
+By using CSA we can see where we are and what we have built - places everything together to get the whole picture. It is the way in which products or the output of configuration control, identification and audits
+are recorded stored and reported.
+\subsection{Audits and reviews}
+Configuration audits - verify that the technical documentation matches and reflects the product performance.
+Formal audits are a configuration management verification activity. CI compared with its configuration documentation.
+Audits provide an arena for interfaces with other program disciplines eg QA, verification and validation.
+Functional audit and a form and fit audit(FCA- "functional configuration audit", PCA - "physical configuration audit").
+In an audit we need, checklist, target, chairperson, recorder. Can result in action items(problem resolutions) that are completed.
+
+\subsection{Impact analysis}
+Is about accurately estimating the scope of changes. Dependency analysis and traceability analysis. Static and dynamic analysis is like lexical analysis.
+Ripple effects - the unwanted side effects of change as eg. interface change, environmental change, requirement change etc.
+Steps - understand software change and determine impact --> Specify and design software change -> implement software change.
+Can create dependency graphs or matrixes. Can be data-flow, definition, calling or functional dependencies.
+Transitive closure shows all paths from u to v. Inferencing systems use rules to characterise relationships among components.
+
+\section{CM and PDM}
+Product data management is the discipline of designing and controlling the evolution of a product design. SCM is the discipline of controlling the evolution of a SW product design.
+SCM is about controlling the evolution of complex SW, it does this by identification of components and documents, product structuring, control of continuous changes, status accounting and auditing. SCm contains both product configuration and the working mode.
+The most important aspects of SCM are:
+\begin{itemize}
+    \item Version control - Storing/retrieving/comparing different versions of SW.
+    \item Configurations/Selections - Create/select different associated versions of different items.
+    \item Concurrency control - for concurrent development
+    \item Build - keeping generated files  up to date, incremental builds.
+    \item Release management - maintaining release packages and keeping track of builds 
+    \item Workspace management - Controlling the working versions for the modules being changed.
+    \item Change management - Supporting infrastructure for change requests.
+\end{itemize}
+SCM does not do a good job of handling complex items and does not recognize the semantics of the object.
+\subsection{Differences between SCM and PDM}
+PDM is focused more on the design side and less on the productions/maintenance.
+In the product model SCM  is weak at data modeling while PDM uses tree structures. PDM supports historical, logical and domain versioning - generating different views of product structures.
+When integrating SCM and PDM it is natural to communicate with the user through PDM as it covers a larger part of the total product lifecycle. Change and development management can be kept under PDM.
+
+\bibliographystyle{plain}
+\end{document}
+
+
+
+
