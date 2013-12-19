@@ -1,4 +1,4 @@
-\beign{article}
+\documentclass{article}
 \usepackage[utf8]{inputenc}
 
 \title{EDAN10 - Summary and key concepts}
@@ -14,8 +14,16 @@
 
 \section{Week 1}
 The number of communication channels increases faster than the number of people involved in a project -->  more time spent coordinating work between people.
-The main question that occurs in different forms is: what program is this? This and resulting questions is due to coordination failure. Configuration management is the art of identifying, organizing and controlling modifications to software. Maximize productivity by minimizing mistakes.There are three types of main problems in CM: \\
+The main question that occurs in different forms is: what program is this? This and resulting questions is due to coordination failure. Configuration management is the art of identifying, organizing and controlling modifications to software. Maximize productivity by minimizing mistakes.
+A good SCM system strives to be comprised of the following:
+\begin{itemize}
+\item Version Management - Enables the secure and controlled storage, retrieval and versioning of all project assets (source code, documentation, test results and so on).
+\item Change Management - Enables the capture, tracking and management of all types of project changes (requests for change, enhancements, defects) and direct comparison of these changes to the versions of the project’s assets used to implement them.
+\item Build Management - Enables the consistent and reliable construction (build) of software applications and reports on their contents and results.
+\item  Process Management - Enables the reporting of actions, history and milestones and provides the capability to customize or enforce development workflow and procedures.
+\end{itemize}
 
+There are three types of main problems in CM: \\
 \begin{description}
     \item[Double maintenance]
     is the problem of keeping multiple identical copies of software. Bugfixes must be identical in each copy. Multiple copies inadvertently diverge over time.
@@ -421,8 +429,49 @@ PDM is focused more on the design side and less on the productions/maintenance.
 In the product model SCM  is weak at data modeling while PDM uses tree structures. PDM supports historical, logical and domain versioning - generating different views of product structures.
 When integrating SCM and PDM it is natural to communicate with the user through PDM as it covers a larger part of the total product lifecycle. Change and development management can be kept under PDM.
 
+\section{Agile and SCM}
+\subsection{Agile philosophies}
+Agile methodologies are focused on quality and lean-ness through concepts like test-driven design (TDD), refactoring,continuous integration, close customer collaboration, pair programming, etc. 
+Key sections in agile are:
+\begin{itemize}
+\item Individuals and interactions over processes and tools
+\item working software over comprehensive documentation
+\item Customer collaboration over contract negotiation
+\item Responding to change over following a plan
+\end{itemize}
+Agile SCM is more about accepting and embracing change than preventing or controlling it.
+Agile SCM requires high discipline, short-term effective feedback. An Agile SCM solution is one aimed at helping developers make accurate code changes to the appropriate set of code while collecting data on changes as they happen. \\
+One of the paradoxes of agile development practices such as continuous integration and test-driven development is that if implemented correctly, they can actually enable a well-disciplined and almost self-governing approach for SCM. For example, test driven development requires that on every code change, agile developers must first write a unit test, then write sufficient code just to make the test work, and then subsequently refactor as necessary to complete the change. The code change is committed (or checked in), and its unit tests become part of the integration suite. Any side-effects of the change are made immediately visible through the integration build mechanism compiling and executing the unit test suite -- any problems that are found can then be fixed immediately. Such an approach will generally lead to better quality code being committed to the SCM repository.
+\subsection{Documentation}
+Documentation is created in order to:
+\begin{itemize}
+\item Consistently share knowledge across many people in a scaleable way, writing is not effective but is scalable.
+\item Provide a persistent media from which to collaboratively build knowledge.
+\item Make knowledge persist over time: There exists knowledge that is somewhat stable and offers value in a persistent form.
+\end{itemize}
+Agile says that we should delay decisions as late as possible and decide as "low" as possible. Write as few documents as possible as late as possible, when required.
+Use documents that are central to project as code generation models, stories. Is about choosing the appropriate level of traceability for the project.
+Rigorous traceability isn't always necessary for the typical agile project, except for the conformance auditing, which many agile methodologies accomplish via TDD, use lightweight specification protocols as tests and requirements - keep related artefacts close so they will be used.
+\subsection{Configuratoin identification/Reports}
+Creating CI reports, managing dependencies between them and keeping them up to date with the actual code from an agile perspective, today that happens during the build process. Build time is when we can capture the actual CI's for that release, know the dependencies between them and can relate them to the actual code with confidence that they won't change for that release.
+\end{subsection}
+Agile software configuration management is an approach requiring significant discipline from participants.  It's very focused on building quality into the software and in releasing more software in a shorter period of time. 
+Different projects have different tolerances for risk, which will dictate the amount of knowledge traceability required.
+
+\Section{Agile SCM}
+\begin{itemize}
+\item Versions. Agile projects implement refactoring, that is they implement the simplest solution possible first and refactor code to redesign the solution as and when necessary. This means that code versions are continually updated in the SCM repository and refactoring operations such as add, delete, move and rename need to be well supported by the SCM tool and the tools into which SCM integrates.
+\item Branches. Agile projects implement simple branching strategies, typically an Active Development Line and maybe a Release Prep Line. The Active Development Line is used by developers to commit their changes and is the means by which continuous integration builds are carried out. The Release Prep Line is used to stabilize or engineer a release before making it available to customers; developers are typically not allowed to commit changes to it.
+\item Workspaces. Developers typically have a single private workspace initially pointing at the collective set of latest versions of the Active Development Line. Their workspaces are updated at a minimum when they start work on a new feature or change request and just before they commit their changes to the Active Development Line to check for integration issues.
+\item Labels. As with traditional SCM, labels (or baselines) are placed at significant milestones on a collective set of code versions, at a minimum on every release build, so that it is possible to reproduce a build environment if necessary.
+\item Builds and integration. An automated build process is a key factor of successful agile development. The build process typically monitors the Active Development Line for commits and, if found, automatically executes (after a grace period) an integration build and unit test. Notification of the success or failure of this build is a key communication factor in agile teams.
+\item Change control. There is an implicit authorization process with agile development teams – at least at the implementation level. Developers are authorized to make changes based on customer priority or refactoring as necessary. Requests are recorded either in change control systems, or even for more informal projects (particularly within eXtreme Programming projects) on cards or flip charts.
+\item Deployment. Agile projects deploy testable applications frequently, particularly where application server environments are in use (e.g. J2EE/Microsoft.NET application servers). Therefore the deployment of frequent incremental baselines or change requests needs to be supported by the SCM tool, as well as the ability to report and query on the versions of the application in each of the environments.
+\end{itemize}
+
 \bibliographystyle{plain}
 \end{document}
+
 
 
 
