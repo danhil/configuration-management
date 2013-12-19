@@ -150,22 +150,90 @@ CM provides stability to the production of a SW system by controlling the produc
     \item Configuration Planning and Management:
     A formal document and plan to guide the CM program that includes items such as:
     Personnel; Responsibilities and Resources; Training requirements; Administrative meeting guidelines, including a definition of procedures and tools;
-    baselining processes; Configuration control and Configuration status accounting; Naming conventions; Audits and Reviews; and Subcontractor/Vendor CM requirements.
+    baselining processes; Configuration control and Configuration status accounting; Naming conventions; Audits and Reviews; and Subcontractor/Vendor CM requirements. \\
+    Planning and management is basically what it says. It is the normal planning to define and
+    establish organizational responsibilities, in this case, the CM Team’s responsibilities abstract
+    well as the CM-related responsibilities of others. It includes the resources necessary and
+    the facilities that are needed. It ensures appropriate CM tools, processes, and activities are
+    available and applied. Continuous improvement is another sub-function under planning
+    and management and essential for reaching level two of CMMi. A slight change of
+    wording and the responsibilities could apply to the planning and management function of
+    any organization or the organization as a whole. The one area that is different or unique is
+    the responsibility to ensure data preservation and interoperability (current data). Data
+    preservation and interoperability means that all of the configuration items and
+    documentation are stored, correct, and available when needed. In other words, a CM
+    library is maintained with all the appropriate documents, and those documents are up-to-
+    date (baselined) and accurate including requirements, drawings, as builds, effective dates
+    (when a change is supposed to be in place and an excellent performance indicator),
+    approved changes, change notices and release dates.
     \item Configuration Identification (CI):
     Consists of setting and maintaining baselines, which define the system or subsystem architecture,
     components, and any developments at any point in time. It is the basis by which changes to any part of an information system are identified, documented,
     and later tracked through design, development, testing, and final delivery. CI incrementally establishes and maintains the definitive current basis for Configuration Status Accounting (CSA)
-    of a system and its configuration items (CIs) throughout their lifecycle (development, production, deployment, and operational support) until disposal.
+    of a system and its configuration items (CIs) throughout their lifecycle (development, production, deployment, and operational support) until disposal. \\
+    This process involves identification of documents comprising the configuration baselines
+    for the system and lower-level items (including logistics support elements) and
+    identification of those items and documents. When an item is identified, it is known as a
+    configuration item (CI). Configuration Identification determines the makeup of any and
+    all products along with their associated documentation. It defines performance, interface,
+    and other attributes for configuration items; provides unique identity (i.e. drawing,
+    document or ID numbers) to products, components, and documentation; specifies
+    identification markings (if required); modifies product and document identifiers to reflect
+    major changes; maintains release control and baseline definition; provides reference for
+    changes and corrective actions; and correlates document revision level to product
+    configuration, which enables users to distinguish between product versions, allows
+    people to correlate a product to the appropriate instructions, and correlates items to
+    service life. What it boils down to is that configuration identification determines how
+    document control numbers and version numbering are applied and used so that
+    everything is labeled correctly and understandably as prescribed by the Configuration
+    Item (CI) manager of that product.
     \item Configuration Control:
     Includes the evaluation of all change requests and change proposals, and their subsequent approval or disapproval.
-    It is the process of controlling modifications to the system's design, hardware, firmware, software, and documentation.
+    It is the process of controlling modifications to the system's design, hardware, firmware, software, and documentation. \\
+    Change Control Management during the lifecycle of a product is a shared function of
+    both the CI manager and the Change Control Board (CCB) made up of stake holders,
+    customers and executives. Change decisions are based on the knowledge of the change
+    impact to the product, costs and the customer. This helps limit changes to those that are
+    necessary or offer significant benefit to the product, the customer or hopefully both. The
+    CCB should evaluate costs (investment analysis), savings, and trade-offs, ensuring that
+    everyone’s interests are considered before approving. CM maintains consistency
+    between the products and all relevant documentation (i.e. as built, as planned and as
+    released with effectivity dates). The CM process documents and limits all variances in a
+    product and provides for continued supportability of the product after a change is
+    implemented.
     \item Configuration Status Accounting:
     Includes the process of recording and reporting configuration item descriptions (e.g., hardware, software, firmware, etc.) and all departures
-    from the baseline during design and production. In case of suspected problems, the verification of baseline configuration and approved modifications can be quickly determined.
+    from the baseline during design and production. In case of suspected problems, the verification of baseline configuration and approved modifications can be quickly determined. \\
+    Configuration Status Accounting is just a fancy name for having information on products
+    and processes, the key being having the valid and current information available for
+    retrieval including any change decisions and change impacts. It provides access to
+    complete configuration information on products and processes to answer any inquiries
+    concerning design change planning, design problems, maintenance, and operating-life
+    expectancy. It is a source for configuration history and accurate identification of each
+    product delivered. Just having that information reduces risk, improves the project’s or
+    the customer’s capability to identify, produce, inspect, deliver, operate, maintain, repair,
+    and refurbish products all of which are necessary. Without CM, this information might
+    or might not be available, and its accuracy would certainly be in question. It can mean
+    the difference between the success or failure of a system or product and provide
+    management with answers as well as capturing corporate knowledge that departs weekly
+    as baby-boomers retire.
     \item Configuration Verification and Audit:
     An independent review of hardware and software for the purpose of assessing compliance with established performance requirements,
     commercial and appropriate military standards, and functional, allocated, and product baselines. Configuration audits verify the system and subsystem configuration documentation
-    complies with their functional and physical performance characteristics before acceptance into an architectural baseline.
+    complies with their functional and physical performance characteristics before acceptance into an architectural baseline. \\
+    Verification and audit of physical and functional requirements is often the final project
+    management activity for new and modified systems and / or products being implemented.
+    Without a formal Quality Assurance (QA) process in an organization, this may be the
+    only way to capture failures, compliance and implementation issues (not installed as
+    specified in the plan (CM)). Normally, CM and QA together ensure the product design
+    provides the agreed-to performance capabilities but in some organizations these activities
+    may fall solely under CM, such as validating the integrity of the configuration
+    documentation and the consistency between a product and its documentation.
+    CM is responsible for establishing the initial
+    product baseline based on requirements, customer needs and organizational goals. It also
+    ensures that the product has been designed in accordance with the initial requirements as
+    modified along the way and as agreed to before being modified. It ensures that the first
+    article built is how subsequent systems are built as designed and tested.
 \end{itemize}
 
 \section{The library metaphor- CI and branching pattern}
@@ -222,7 +290,27 @@ Different patterns:
     \item Early branching - Branch early and often, branch per task, one codeline per release.
     \item Lazy/Late branching - Wait until work conflicts with codeline and then branch, wait until logical change that is not needed/wanted in original codeline is implemented.
     \item Branch per task - Fork of a new branch for each activity that affects the codeline, merge in when tested and complete.
+    when different development teams are engaged in large and complex changes that may involve conflicting changes to the same configuration items,
+    it may be desirable to isolate them from each other using different development paths.
+    This means they are each able to check-interim versions of their code without adversely affecting each other (as might occur if they were both using the same "mainline").
+    Merging back to the trunk, or mainline, is deferred until each change is complete and the merge is "batched", meaning that all the related code changes are merged at the same time
+    so that the mainline remains consistent.
+    The main difficulty with using this pattern is that the amount of code to be merged is much larger than with "Branch per Release";
+    this is because each merge involves the entire code for some new feature,
+    rather than just a bug fix where the code changes are often quite small.
     \item Code Line per release - one branch per release to organize efforts focused on individual release, can use early or deferred branching.
+    The optimum point at which to diverge a release configuration from the ongoing"mainline" of development would be at the point of "feature freeze",
+    when the decision is taken not to include any more features in the release being planned.
+    From this point onward it becomes important that no further feature-enhancement code leaks into the release and that only changes necessary
+    to fix existing features are applied to that configuration.
+    A criticism sometimes levelled at this pattern is that fixes need to be made in more than one place:
+    any fixes made on a release branch are likely also to be needed on the trunk (mainline), and possibly on other release branches if multiple releases are active.
+    This is true but is mitigated by the following factors:
+    \begin{itemize}
+        \item The fixes which need to be merged will generally be relatively small code changes and therefore easy to merge
+        \item The (generally much larger) feature changes do not need to be merged at all
+        \item In practice, some of the fixes will have been rendered obsolete by other changes on the trunk and will not be required.
+    \end{itemize}
     \item Subproject line - Using branch per task and need to perform large task that can be split into several subtasks. Create branch for large task and branch on it for smaller tasks.
     \item Parallel maintenance/development line - Create a maintenance and development branch of the mainline, propagate changes to codeline.
     \item Staged integration line - promotion line for different levels of code stability, when reach last level merge into the mainline.
@@ -306,7 +394,17 @@ Transitive closure shows all paths from u to v. Inferencing systems use rules to
 
 \section{CM and PDM}
 Product data management is the discipline of designing and controlling the evolution of a product design. SCM is the discipline of controlling the evolution of a SW product design.
-SCM is about controlling the evolution of complex SW, it does this by identification of components and documents, product structuring, control of continuous changes, status accounting and auditing. SCm contains both product configuration and the working mode.
+Configuration Management transitions conventional document management systems to an
+enterprise information management environment that captures, stores, manages, and retrieves
+data but also identifies and retains the context of data and its relationship to projects, products,
+assets, processes, equipment, organizations, and users throughout the complete life cycles of any
+product within the organization. It ensures data integrity through closed-loop change management and
+controls changes in a logical sequence—from inception to change-effects analysis to notification
+to implementation and, finally, reporting by effectivity (dated baselines). This is an excellent
+performance metrics reporting method, a perfect disaster recovery method and a means to
+capture corporate knowledge before it leaves. \\
+SCM is about controlling the evolution of complex SW, it does this by identification of components and documents, product structuring, control of continuous changes,
+status accounting and auditing. SCm contains both product configuration and the working mode.
 The most important aspects of SCM are:
 \begin{itemize}
     \item Version control - Storing/retrieving/comparing different versions of SW.
